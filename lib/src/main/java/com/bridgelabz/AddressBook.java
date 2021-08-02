@@ -1,7 +1,11 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -64,7 +68,7 @@ public class AddressBook {
         }
         return false;
     }
-    //Description- Checking Duplicate Contacts Is Exist Or Not In AddressBook 
+    //Checking Duplicate Contacts Is Exist Or Not In AddressBook 
     private boolean check1(String firstName) {
         if (contacts.isEmpty())
             return false;
@@ -142,30 +146,43 @@ public class AddressBook {
             }
         }
     }
+    //to search person by city name 
+    public void searchPersonByCity() {
+        System.out.println("Enter the city to search person.");
+        String cityName = sc.next();
+        System.out.println("Person Search by " + cityName);
+        Collection<Contacts> values = contacts.values();
+        ArrayList<Contacts> conatactlist
+                = new ArrayList<>(values);
+        Dictionary dictWithCity = new Hashtable();
+        conatactlist.stream().filter(n -> n.city.contains(cityName)).forEach(contactlist -> dictWithCity.put(contactlist.firstName, cityName));
+        for (Enumeration i = dictWithCity.keys(); i.hasMoreElements(); ) {
+            System.out.println(i.nextElement());
+        }
+    }
+    // to search person by state wise 
+    public void searchPersonByState() {
+        System.out.println("Enter the state to search person.");
+        String stateName = sc.next();
+        System.out.println("Person Search by " + stateName);
+        Collection<Contacts> values = contacts.values();
+        ArrayList<Contacts> conatactlist
+                = new ArrayList<>(values);
+        Dictionary dictWithState = new Hashtable();
+        conatactlist.stream().filter(n -> n.state.contains(stateName)).forEach(contactlist -> dictWithState.put(contactlist.firstName, stateName));
+        for (Enumeration i = dictWithState.keys(); i.hasMoreElements(); ) {
+            System.out.println(i.nextElement());
+        }
+    }
     
     //Main Method
+
     public static void main(String[] args) {
         AddressBook addressbook = new AddressBook();
-        int choice = 1;
-        do {
-            System.out.println("Enter your choice\n1. Add Contact\t\t2. Edit Contact\n3. Delete Contact\t4. Exit");
-            int userInput = sc.nextInt();
-            switch (userInput) {
-                case 1:
-                    addressbook.addContacts();
-                    break;
-                case 2:
-                    addressbook.editContact();
-                    break;
-                case 3 :
-                    addressbook.deleteContact();
-                    break;
-                default:
-                    System.out.println("You press exit.\nThank You!");
-                    choice = 0;
-                    break;
-            }
-        }
-        while (choice != 0);
-    }
+        addressbook.selectOption();
+    
+	}
+	private void selectOption() {
+		
+	}
 }
