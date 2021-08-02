@@ -13,13 +13,13 @@ public class AddressBookTest {
     public void whenGivenAddressbook_whenAdded_shouldReturnContactList(){
         addressBook=new AddressBook();
         addressBook.message();
-        Contact contact= new Contact("Maya","Chandre","Hyderabad","Telangana",560076
+        Contacts contact= new Contacts("Maya","Chandre","Hyderabad","Telangana",560076
                 ,966339366,"maya@gmail.com");
-        Contact contact1=new Contact("Supriya","Kv","Hyderabad","Telangana",560076
+        Contacts contact1=new Contacts("Supriya","Kv","Hyderabad","Telangana",560076
                 ,526157122,"supriya@gmail.com");
         addressBook.addNewContact(contact);
         addressBook.addNewContact(contact1);
-        ArrayList<Contact> contactList= addressBook.getContactlist();
+        ArrayList<Contacts> contactList= addressBook.getContactlist();
         Assert.assertEquals(2,contactList.size());
     }
 }

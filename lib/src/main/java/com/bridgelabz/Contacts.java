@@ -2,7 +2,7 @@ package com.bridgelabz;
 
 import java.util.Objects;
 
-public class Contact {
+public class Contacts {
 
 	String firstName;
     String lastName;
@@ -14,7 +14,7 @@ public class Contact {
 
     //Constructor to initialize global variables
    
-    public Contact(String firstName, String lastName, String city, String state, int zip, int mob, String email) {
+    public Contacts(String firstName, String lastName, String city, String state, int zip, int mob, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -24,7 +24,12 @@ public class Contact {
         this.email = email;
     }
 
-    public String getFirstName() {
+    public Contacts(String firstName2, String lastName2, String address, String state2, String city2, int zipCode,
+			long number, String email2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getFirstName() {
         return firstName;
     }
 
@@ -76,7 +81,7 @@ public class Contact {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Contact contact = (Contact) o;
+        Contacts contact = (Contacts) o;
         return zip == contact.zip && phoneNumber == contact.phoneNumber && Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName) && Objects.equals(city, contact.city) && Objects.equals(state, contact.state) && Objects.equals(email, contact.email);
     }
 
