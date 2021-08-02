@@ -125,10 +125,10 @@ public class AddressBook {
             }
         }
     }
+    
     //Main Method
     public static void main(String[] args) {
         AddressBook addressbook = new AddressBook();
-       // addressbook.addContacts();
         int choice = 1;
         do {
             System.out.println("Enter your choice\n1. Add Contact\t\t2. Edit Contact\n3. Delete Contact\t4. Exit");
