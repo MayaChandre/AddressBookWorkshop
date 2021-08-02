@@ -47,7 +47,8 @@ public class AddressBook {
 	        }
 	        System.out.println("\nContacts added Successfully");
 	    }
-	    /* @Description- Checking Contacts Is Exist Or Not In AddressBook  */
+	    
+	    //Checking Contacts Is Exist Or Not In AddressBook  
 	    private boolean check(String firstName) {
 	        if (contacts.isEmpty())
 	            return false;
@@ -102,17 +103,36 @@ public class AddressBook {
 	            }
 	        }
 	    }
-	    /* Description - create new address book */
+	    // create new address book 
 	    public void createNewAddressBook() {
 	        System.out.println("Enter the name for Address Book:");
 	        String addressBookName = sc.next();
 	        AddressBookList addressBookListobj = new AddressBookList(addressBookName);
 	    }
-	    /*Main Method*/
+	        
+	        // delete contacts in address book  using their name 
+	        public void deleteContact() {
+	            if (contacts.isEmpty()) {
+	                System.out.println("Contact list is empty.");
+	            } else {
+	                System.out.println("Enter the first name to delete contact.");
+	                String name = sc.next();
+	                Iterator<Integer> itr = contacts.keySet().iterator();
+	                while(itr.hasNext()) {
+	                    int key = itr.next();
+	                    if (contacts.get(key).firstName.equals(name)) {
+	                        contacts.remove(key);
+	                        System.out.println("Contact deleted with first name : "+name);
+	                    }
+	                }
+	            }
+	        
+	    }
+	    //Main Method
 	    public static void main(String[] args) {
 	        int choice = 1;
 	        do {
-	            System.out.println("Enter your choice\n1. Add Contact\t\t2. Edit Contact\n3. Delete Contact\t3. Exit");
+	            System.out.println("Enter your choice\n1. Add Contact\t\t2. Edit Contact\n3. Delete Contact\t4. Exit");
 	            int userInput = sc.nextInt();
 	            switch (userInput) {
 	                case 1:
