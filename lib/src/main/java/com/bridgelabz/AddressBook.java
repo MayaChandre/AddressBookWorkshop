@@ -29,6 +29,8 @@ public class AddressBook {
                     "\n4. Create New AddressBook" +
                     "\n5. Search Person By City" +
                     "\n6. Search Person By state" +
+                    "\n7. Count Person By state" +
+                    "\n8. Count Person By City" +
                     "\n0. Exit");
             int userInput = sc.nextInt();
             switch (userInput) {
@@ -49,6 +51,11 @@ public class AddressBook {
                     break;
                 case 6:
                     addressbook.searchPersonByState();
+                case 7:
+                    addressbook.countPersonByCity();
+                    break;
+                case 8:
+                    addressbook.countPersonByState();
                     break;
                 default:
                     System.out.println("You press exit.\nThank You!");
@@ -59,7 +66,15 @@ public class AddressBook {
         while (choice != 0);
     }
 
-    // Add new contacts in address book  
+    private void countPersonByState() {
+		
+   	}
+
+   	private void countPersonByCity() {
+   	
+   	}
+
+	// Add new contacts in address book  
     private void addContacts() {
         System.out.println("Enter Number of Person you want to add");
         int numOfPerson = sc.nextInt();
