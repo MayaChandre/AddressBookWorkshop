@@ -2,6 +2,7 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ public class AddressBook {
                     "\n6. Search Person By state" +
                     "\n7. Count Person By state" +
                     "\n8. Count Person By City" +
+                    "\n9. Sort Person" +
                     "\n0. Exit");
             int userInput = sc.nextInt();
             switch (userInput) {
@@ -57,6 +59,9 @@ public class AddressBook {
                 case 8:
                     addressbook.countPersonByState();
                     break;
+                case 9:
+                    addressbook.sortPersonByFirstname();
+                    break;
                 default:
                     System.out.println("You press exit.\nThank You!");
                     choice = 0;
@@ -66,7 +71,11 @@ public class AddressBook {
         while (choice != 0);
     }
 
-    private void countPersonByState() {
+    private void sortPersonByFirstname() {
+		
+	}
+
+	private void countPersonByState() {
 		
    	}
 
@@ -166,6 +175,21 @@ public class AddressBook {
         System.out.println("Enter The Name For Address Book:");
         String addressBookName = sc.next();
         AddressBookList addressBookListobj = new AddressBookList(addressBookName);
+        //to count  person by state name */
+        public void countPersonByState() {
+            Collection<Contacts> values = contacts.values();
+            ArrayList<Contacts> conatactlist
+                    = new ArrayList<>(values);
+            System.out.println(conatactlist.stream().collect(Collectors.groupingBy((Contacts C) -> C.getState(),Collectors.counting())));
+        }
+
+        /* Description - to count  person by city name */
+        public void countPersonByCity() {
+            Collection<Contacts> values = contacts.values();
+            ArrayList<Contacts> conatactlist
+                    = new ArrayList<>(values);
+            System.out.println(conatactlist.stream().collect(Collectors.groupingBy((Contacts C) -> C.getCity(),Collectors.counting())));
+        }
     }
     // delete contacts in address book  using their name 
     public void deleteContact() {
@@ -212,7 +236,21 @@ public class AddressBook {
             System.out.println(i.nextElement());
         }
     }
-    /*Main Method*/
+    /* Description - sort the entries in the address book alphabetically by Person’s name */
+    public void sortPersonByFirstname1(){
+        Collection<Contacts> values = contacts.values();
+        ArrayList<Contacts> conatactlist
+                = new ArrayList<>(values);
+        System.out.println("Contact list before sorting the list");
+        for (Contacts cont : conatactlist){
+            System.out.println(cont.getFirstName() + cont.getLastName());
+        }
+        System.out.println("Contact list after sorting the list");
+        conatactlist.stream();
+        conatactlist.sort(Comparator.comparing(Contacts::getFirstName));
+        conatactlist.forEach((Contacts cont) -> System.out.println(cont.getFirstName() + " " + cont.getLastName()));
+    }
+    //Main Method
     public static void main(String[] args) {
         AddressBook addressbook = new AddressBook();
         addressbook.selectOption();
