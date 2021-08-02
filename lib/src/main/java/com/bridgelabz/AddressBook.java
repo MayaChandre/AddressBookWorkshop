@@ -19,9 +19,49 @@ public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
     static AddressBook addressbook = new AddressBook();
 
+    public void selectOption() {
+        int choice = 1;
+        do {
+            System.out.println("Enter your choice" +
+                    "\n1. Add Contact" +
+                    "\n2. Edit Contact" +
+                    "\n3. Delete Contact" +
+                    "\n4. Create New AddressBook" +
+                    "\n5. Search Person By City" +
+                    "\n6. Search Person By state" +
+                    "\n0. Exit");
+            int userInput = sc.nextInt();
+            switch (userInput) {
+                case 1:
+                    addressbook.addContacts();
+                    break;
+                case 2:
+                    addressbook.editContact();
+                    break;
+                case 3:
+                    addressbook.deleteContact();
+                    break;
+                case 4:
+                    addressbook.createNewAddressBook();
+                    break;
+                case 5:
+                    addressbook.searchPersonByCity();
+                    break;
+                case 6:
+                    addressbook.searchPersonByState();
+                    break;
+                default:
+                    System.out.println("You press exit.\nThank You!");
+                    choice = 0;
+                    break;
+            }
+        }
+        while (choice != 0);
+    }
+
     // Add new contacts in address book  
     private void addContacts() {
-        System.out.println("Enter Number of person you want to add");
+        System.out.println("Enter Number of Person you want to add");
         int numOfPerson = sc.nextInt();
         for (int add = 1; add <= numOfPerson; add++){
             Scanner scanner = new Scanner(System.in);
@@ -51,25 +91,8 @@ public class AddressBook {
         }
         System.out.println("\nContacts added Successfully");
     }
-    // Checking Contacts Is Exist Or Not In AddressBook 
+    /* @Description- Checking Duplicate Contacts Is Exist Or Not In AddressBook  */
     private boolean check(String firstName) {
-        if (contacts.isEmpty())
-            return false;
-        else {
-            System.out.println("\nAdd contact again with different first name.");
-            Iterator<Integer> itr = contacts.keySet().iterator();
-            while (((Iterator<?>) itr).hasNext()) {
-                int key = itr.next();
-                if (contacts.get(key).firstName.equals(check(firstName))) {
-                    System.out.println("\nAdd contact again with different first name.");
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    //Checking Duplicate Contacts Is Exist Or Not In AddressBook 
-    private boolean check1(String firstName) {
         if (contacts.isEmpty())
             return false;
         else {
@@ -146,7 +169,7 @@ public class AddressBook {
             }
         }
     }
-    //to search person by city name 
+    // to search person by city name 
     public void searchPersonByCity() {
         System.out.println("Enter the city to search person.");
         String cityName = sc.next();
@@ -164,7 +187,7 @@ public class AddressBook {
     public void searchPersonByState() {
         System.out.println("Enter the state to search person.");
         String stateName = sc.next();
-        System.out.println("Person Search by " + stateName);
+        System.out.println("Person Search by: " + stateName);
         Collection<Contacts> values = contacts.values();
         ArrayList<Contacts> conatactlist
                 = new ArrayList<>(values);
@@ -174,15 +197,9 @@ public class AddressBook {
             System.out.println(i.nextElement());
         }
     }
-    
-    //Main Method
-
+    /*Main Method*/
     public static void main(String[] args) {
         AddressBook addressbook = new AddressBook();
         addressbook.selectOption();
-    
-	}
-	private void selectOption() {
-		
-	}
+    }
 }
