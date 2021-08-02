@@ -64,6 +64,23 @@ public class AddressBook {
         }
         return false;
     }
+    //Description- Checking Duplicate Contacts Is Exist Or Not In AddressBook 
+    private boolean check1(String firstName) {
+        if (contacts.isEmpty())
+            return false;
+        else {
+            System.out.println("\nAdd contact again with different first name.");
+            Iterator<Integer> itr = contacts.keySet().iterator();
+            while (((Iterator<?>) itr).hasNext()) {
+                int key = itr.next();
+                if (contacts.get(key).firstName.equals(check(firstName))) {
+                    System.out.println("\nAdd contact again with different first name.");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     // edit contacts address book 
     public void editContact(){
         if (contacts.isEmpty()) {
